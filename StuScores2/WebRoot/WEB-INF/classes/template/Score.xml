@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbook>
+	<!--sheet表单序号从0开始编号，行号从1开始编号-->
+	<worksheet sheet="0" startRow="2" endRow="5000">
+		<!--列号从0开始编号-->
+		<column col="0" name="user_name" desc="学号">
+			<valid javaType="java.lang.String" nullable="false" minLength="1"
+				maxLength="50" regEx="" hint="请正确填写学号">
+			</valid>
+		</column>
+		<column col="1" name="course_name" desc="课程名称">
+			<valid javaType="java.lang.String" nullable="false" minLength="1"
+				maxLength="50" regEx="" hint="请正确填写课程名称">
+			</valid>
+		</column>
+		<column col="2" name="score_year" desc="年份">
+			<valid javaType="java.lang.Integer" nullable="false" minLength="4"
+				maxLength="4" regEx="\d{4}" hint="请正确填写成绩">
+			</valid>
+		</column>
+		<column col="3" name="score_year_half" desc="上半年/下半年">
+			<valid javaType="java.lang.String" nullable="false" minLength="1"
+				maxLength="50" regEx="" hint="请正确填写上半年/下半年">
+			</valid>
+		</column>
+		<column col="4" name="score_value" desc="成绩">
+			<valid javaType="java.lang.Double" nullable="false" minLength="1"
+				maxLength="11" regEx="" hint="请正确填写成绩">
+			</valid>
+		</column>
+	</worksheet>
+</workbook>

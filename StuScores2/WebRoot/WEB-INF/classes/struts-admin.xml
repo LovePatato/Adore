@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="admin" extends="json-default" namespace="/admin">
+		<result-types>
+        	<!-- 如果需要支持excel导出，必须定义以下excel类型 -->
+            <result-type name="excel" class="com.nkl.admin.action.Struts2ExcelResultSupport"/>
+        </result-types>
+	
+	  	<action name="Login*" class="com.nkl.admin.action.LoginAction" method="{1}">
+	  		<result name="error">login.jsp</result>
+	  		<result name="success" type="redirect">index.jsp</result>
+	  		<result name="logout" type="redirect">login.jsp</result>
+	  	</action>
+	  	
+	  	<action name="queryCourse" class="com.nkl.admin.action.AdminAction" method="queryCourse">
+	  		<result name="success" type="json">
+	  			<param name="ignoreHierarchy">false</param>
+            	<param name="includeProperties">
+					success,data.*
+				</param>
+            </result>
+            <result name="error" type="json">
+            	<param name="ignoreHierarchy">false</param>
+			    <param name="includeProperties">
+					success,err.*
+				</param>
+			</result>
+	  	</action>
+	  	
+	  	<action name="queryStudent" class="com.nkl.admin.action.AdminAction" method="queryStudent">
+	  		<result name="success" type="json">
+	  			<param name="ignoreHierarchy">false</param>
+            	<param name="includeProperties">
+					success,data.*
+				</param>
+            </result>
+            <result name="error" type="json">
+            	<param name="ignoreHierarchy">false</param>
+			    <param name="includeProperties">
+					success,err.*
+				</param>
+			</result>
+	  	</action>
+	  	
+	  	<action name="Admin_*" class="com.nkl.admin.action.AdminAction" method="{1}">
+	  		<result name="loginTip" type="redirect">loginTip.jsp</result>
+	  		<result name="error">error.jsp</result>
+	  		<result name="infoTip">infoTip.jsp</result>
+	  		<result name="userInfo" type="redirect">modifyInfo.jsp</result>
+	  		<result name="userPwd" type="redirect">modifyPwd.jsp</result>
+	  		<result name="clazzShow">clazzShow.jsp</result>
+	  		<result name="clazzEdit">clazzEdit.jsp</result>
+	  		<result name="courseShow">courseShow.jsp</result>
+	  		<result name="courseEdit">courseEdit.jsp</result>
+	  		<result name="teacherShow">teacherShow.jsp</result>
+	  		<result name="teacherEdit">teacherEdit.jsp</result>
+	  		<result name="planShow">planShow.jsp</result>
+	  		<result name="planEdit">planEdit.jsp</result>
+	  		<result name="userShow">userShow.jsp</result>
+	  		<result name="userEdit">userEdit.jsp</result>
+	  		<result name="configShow">configShow.jsp</result>
+	  		<result name="configEdit">configEdit.jsp</result>
+	  		<result name="scoreShow">scoreShow.jsp</result>
+	  		<result name="scoreEdit">scoreEdit.jsp</result>
+	  		<result name="scoreSumShow">scoreSumShow.jsp</result>
+			<!--add start-->
+			<result name="singleScoresStudent">singleScoresStudent.jsp</result>
+			<result name="singleScores">singleScores.jsp</result>
+			<result name="sumScores">sumScores.jsp</result>
+			<result name="singleScoresSectionShow">singleScoresSection.jsp</result>
+			<result name="sumScoresSectionShow">sumScoresSection.jsp</result>
+			<!--add end-->
+
+	  	</action>
+	  	
+	  	<action name="export*" class="com.nkl.admin.action.ExportExcelAction" method="export{1}">
+			<result name="success" type="excel">
+				template/{1}.xls
+			</result>
+			<result name="error" type="json">
+			    <param name="contentType">text/html;charset=utf-8</param>
+			    <param name="includeProperties">
+					success,errorReason.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="Import_*" class="com.nkl.admin.action.ImportExcelAction" method="import{1}">
+	  		<param name="xmlFileName">template/{1}.xml</param> 
+	  		<result name="success">import{1}.jsp</result>
+	  		<result name="input">import{1}.jsp</result>
+	  	</action>
+
+		<action name="listSingleScores" class="com.nkl.admin.action.PerformanceAction" method="listSingleScores"></action>
+		<action name="listYears" class="com.nkl.admin.action.PerformanceAction" method="listYears"></action>
+		<action name="listClasses" class="com.nkl.admin.action.PerformanceAction" method="listClasses"></action>
+		<action name="listCourses" class="com.nkl.admin.action.PerformanceAction" method="listCourses"></action>
+		<action name="SingleRanks" class="com.nkl.admin.action.PerformanceAction" method="SingleRanks"></action>
+	</package>
+</struts>    
